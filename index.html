@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- displays site properly based on user's device -->
+    <link rel="stylesheet" href="./style.css">
+    <script src="./todo.js" defer></script>
+    <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@400;700&display=swap" rel="stylesheet">    
+    <title>Frontend Mentor | Todo app</title>
+
+    <!-- Feel free to remove these styles or customise in your own stylesheet 👍 -->
+    <style>
+      .attribution { font-size: 11px; text-align: center; }
+      .attribution a { color: hsl(228, 45%, 44%); }
+    </style>
+  </head>
+  <body>
+    <header></header>
+    <main>
+      <div class="todo__container">
+        <section class="todo__theme">
+          <h1 class="logo">TODO</h1>
+          <div class="theme__icon">
+            <img src="./images/icon-moon.svg" alt="" class="light" onclick="return darkTheme()">
+            <img src="./images/icon-sun.svg" alt="" class="dark" onclick="return lightTheme()">
+          </div>
+        </section>
+        <section class="add__to__todo--list">
+          <div class="input">
+            <span></span>
+            <input class="todoInput" type="text" placeholder="Create a new todo...">
+          </div>
+          <div class="todo__list">
+            <ul class="lists">
+              
+            </ul>
+            <section class="activity__section">
+              <div class="items__left">
+                <p><span>0</span> items left</p>
+              </div>
+              <div class="activity flex__a">
+                <p class="current--Array">All</p>
+                <p>Active</p>
+                <p>Completed</p>
+              </div>
+              <div class="clear__completed">
+                <p>Clear Completed</p>
+              </div>
+            </section>
+          </div>
+        </section>
+        <section class="activity flex__b">
+          <p class="current--Array">All </p>
+          <p>Active</p>
+          <p>Completed</p>
+        </section>
+        <section class="reorder__todo--list">
+          <p id="drop--position">Drag and drop to reorder list</p>
+        </section>
+      </div>
+    </main>
+  </body>
+</html>
