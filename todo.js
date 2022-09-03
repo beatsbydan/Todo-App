@@ -27,28 +27,53 @@ const toDoContainer = document.querySelector('.lists')
 let toDoListArray = JSON.parse(localStorage.getItem("list"))
 
 
-
 //function to show each todo list
-function showToDoList(toDoListArrays){
+function showToDoList(){
     let li = "";
     if(toDoListArray){
          //for each todo item added, we want to display on the screen
-    toDoListArrays.forEach((todo, id) => {
-        //what should be displayed
-        li += `<li draggable="true">
-                    <div class="box">
-                        <div class="check--box" ${id} = onclick=" return checked()"><img src="./images/icon-check.svg" alt=""></div>
-                        <p>${todo.name}</p>
-                    </div>
-                    <div class="remove">
-                        <img src="./images/icon-cross.svg" alt="">
-                    </div>
-                </li>`
-        })
+        toDoListArray.forEach((todo, id) => {
+            //what should be displayed
+            li += `<li draggable="true">
+                        <div for="${id}" class="box">
+                            <input type="checkbox" id= ${id} data-checkbox class="checkbox">
+                            <p class="todo-item" data-todo>${todo.name}</pc>
+                        </div>
+                        <div class="remove">
+                            <img src="./images/icon-cross.svg" onclick = "return removeItem()" alt="">
+                        </div>
+                    </li>`
+            })
     }
     //setting the content of the unordered list to the list items
     toDoContainer.innerHTML = li;
 }
+showToDoList();
+//creating the functionalities for the check and unchecked items
+///getting all the checkboxes
+const checkBoxes = document.getElementsByClassName("checkbox")
+//getting all the todo items
+const todoItems = document.getElementsByClassName("todo-item")
+//for loop to add event listener to each checkbox
+for(let i = 0; i<checkBoxes.length; i++){
+    //parsing a function to review if any items are checked or not
+    checkBoxes[i].addEventListener("change", checked)
+}
+function checked(){
+    for(let i = 0; i<todoItems.length; i++){
+        if(checkBoxes[i].checked == true){
+            todoItems[i].classList.add("checked")
+            if(todoItems[i].innerHTML = (toDoListArray[i].name)){
+                toDoListArray[i].status ='completed'
+            }
+        }
+        else{
+            todoItems[i].classList.remove("checked")
+            toDoListArray[i].status= "pending"
+        }
+    }
+}
+
 
 //adding an event listener to the input to read its content
 toDoInput.addEventListener("keyup", e => {
@@ -63,7 +88,7 @@ toDoInput.addEventListener("keyup", e => {
         //setting the value of the input to null after enter is pressed
         toDoInput.value = "";
         //creating the object that'd contain the value obtained from the input
-        let whatToDo = {name: toDo, status: 'pending'}
+        let whatToDo = {name: toDo, id: Math.random(), status: 'pending'}
         //pushing each todo item to the local storage
         toDoListArray.push(whatToDo)
         //setting items in the local storage
@@ -89,7 +114,7 @@ function viewColors(currentColors, targetColors){
     targetColors.classList.add('current--Array')
 }
 
-arrayA.forEach(p => {
+arrayA.forEach(() => {
     arrayA[0].addEventListener('click', () => {
         let currentColor = document.querySelector('.current--Array')
         let targetColor = arrayA[0];
