@@ -33,15 +33,17 @@ function showToDoList(){
     if(toDoListArray){
          //for each todo item added, we want to display on the screen
         toDoListArray.forEach((todo, id) => {
+            //to keep the checked class constant even upon refresh, using the ternary operator
             let todoIsChecked = todo.status == "completed" ? "checked" : ""
+            
             //what should be displayed
             li += `<li draggable="true">
                         <div for="${id}" class="box">
-                            <input type="checkbox" id= ${id} data-checkbox class="checkbox" ${todoIsChecked}>
-                            <p class="todo-item" data-todo>${todo.name}</pc>
+                            <input type="checkbox" onclick=" return isChecked(this)" id= ${id}  ${todoIsChecked} data-checkbox class="checkbox">
+                            <p class="${todoIsChecked}" data-todo>${todo.name}</pc>
                         </div>
                         <div class="remove">
-                            <img src="./images/icon-cross.svg" onclick = "return removeItem()" alt="">
+                            <img src="./images/icon-cross.svg" onclick = "return removeItem(${id})" alt="">
                         </div>
                     </li>`
             })
@@ -51,7 +53,34 @@ function showToDoList(){
 }
 showToDoList();
 
+//function to remove each item
+function removeItem(idToBeDeleted){
+    //removing the selected item;
+    toDoListArray.splice(idToBeDeleted, 1)
+    //parsing into the local storage
+    localStorage.setItem("list", JSON.stringify(toDoListArray))
+    showToDoList()
+}
 
+//function to display the checks
+function isChecked(todo){
+    //getting the todo item class so as tobe able to edit
+    let selectedTodo = todo.nextElementSibling
+    //statement to add / remove the checked class when checkbox is active or inactive
+    if(todo.checked){
+        selectedTodo.classList.add("checked")
+        //updating the status
+        toDoListArray[todo.id].status = "complete"
+    }
+    else{
+        selectedTodo.classList.remove("checked")
+        toDoListArray[todo.id].status = "pending"
+        //updating the status
+    }
+    localStorage.setItem("list", JSON.stringify(toDoListArray))
+}
+
+/*
 //creating the functionalities for the check and unchecked items
 ///getting all the checkboxes
 const checkBoxes = document.getElementsByClassName("checkbox")
@@ -61,7 +90,7 @@ const todoItems = document.getElementsByClassName("todo-item")
 //for loop to add event listener to each checkbox
 for(let i = 0; i<checkBoxes.length; i++){
     //parsing a function to review if any items are checked or not
-    checkBoxes[i].addEventListener("change", checked)
+    checkBoxes[i].addEventListener("click", checked)
 }
 function checked(){
     //for loop to iterate through each todo item and toggle checked class
@@ -88,7 +117,7 @@ function checked(){
             localStorage.setItem("list", JSON.stringify(toDoListArray))
         }
     }
-}
+}*/
 
 
 //adding an event listener to the input to read its content
@@ -110,7 +139,7 @@ toDoInput.addEventListener("keyup", e => {
         //setting items in the local storage
         localStorage.setItem("list", JSON.stringify(toDoListArray))
         //showing the todo lis items on the screen
-        showToDoList(toDoListArray);
+        showToDoList();
     }
 })
 
