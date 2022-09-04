@@ -40,7 +40,7 @@ function showToDoList(){
             li += `<li draggable="true">
                         <div for="${id}" class="box">
                             <input type="checkbox" onclick=" return isChecked(this)" id= ${id}  ${todoIsChecked} data-checkbox class="checkbox">
-                            <p data-todo>${todo.name}</pc>
+                            <p class="${todoIsChecked}" data-todo>${todo.name}</pc>
                         </div>
                         <div class="remove">
                             <img src="./images/icon-cross.svg" onclick = "return removeItem(${id})" alt="">
@@ -70,7 +70,7 @@ function isChecked(todo){
     if(todo.checked){
         selectedTodo.classList.add("checked")
         //updating the status
-        toDoListArray[todo.id].status = "complete"
+        toDoListArray[todo.id].status = "completed"
     }
     else{
         selectedTodo.classList.remove("checked")
