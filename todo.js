@@ -16,7 +16,7 @@ function darkTheme(){
     dark.classList.add('in-dark__mode')
 }
 
-//todo app
+//TODO APP
 //getting the input of the lists
 const toDoInput = document.querySelector('.todoInput')
 
@@ -33,10 +33,11 @@ function showToDoList(){
     if(toDoListArray){
          //for each todo item added, we want to display on the screen
         toDoListArray.forEach((todo, id) => {
+            let todoIsChecked = todo.status == "completed" ? "checked" : ""
             //what should be displayed
             li += `<li draggable="true">
                         <div for="${id}" class="box">
-                            <input type="checkbox" id= ${id} data-checkbox class="checkbox">
+                            <input type="checkbox" id= ${id} data-checkbox class="checkbox" ${todoIsChecked}>
                             <p class="todo-item" data-todo>${todo.name}</pc>
                         </div>
                         <div class="remove">
@@ -49,27 +50,42 @@ function showToDoList(){
     toDoContainer.innerHTML = li;
 }
 showToDoList();
+
+
 //creating the functionalities for the check and unchecked items
 ///getting all the checkboxes
 const checkBoxes = document.getElementsByClassName("checkbox")
 //getting all the todo items
 const todoItems = document.getElementsByClassName("todo-item")
+
 //for loop to add event listener to each checkbox
 for(let i = 0; i<checkBoxes.length; i++){
     //parsing a function to review if any items are checked or not
     checkBoxes[i].addEventListener("change", checked)
 }
 function checked(){
+    //for loop to iterate through each todo item and toggle checked class
     for(let i = 0; i<todoItems.length; i++){
+        //statement for when each checkbox is checked
         if(checkBoxes[i].checked == true){
+            //adding the classlist of check when items are checked
             todoItems[i].classList.add("checked")
+            //looping through the local storage to change the status upon a click
             if(todoItems[i].innerHTML = (toDoListArray[i].name)){
+                //changing the status to completed
                 toDoListArray[i].status ='completed'
+                //appending to the local storage
+                localStorage.setItem("list", JSON.stringify(toDoListArray))
             }
         }
+        //statement for when each checkbox is not checked
         else{
+            //removing the classlist of checked when items are unchecked
             todoItems[i].classList.remove("checked")
+            //changing the status back to pending
             toDoListArray[i].status= "pending"
+            //appending to the local storage
+            localStorage.setItem("list", JSON.stringify(toDoListArray))
         }
     }
 }

@@ -200,12 +200,12 @@ input:focus{
     cursor:pointer;
     border-image-slice:1;
 }
-.checkbox:hover{
+/*.checkbox:hover{
     border: double 2px transparent;
     background-origin: border-box;
     -webkit-background-clip: content-box, border-box;
     background-image: linear-gradient(var(--container-color),var(--container-color)), linear-gradient(to right, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
-}
+}*/
 .checkbox:checked{
     background-repeat: no-repeat;
     background-position: center;
