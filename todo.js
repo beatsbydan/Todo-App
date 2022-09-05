@@ -76,7 +76,7 @@ function showToDoList(filteredList){
             })
     }
     //setting the content of the unordered list to the list items
-    toDoContainer.innerHTML = li;
+    toDoContainer.innerHTML = li || `<p class ="default-statement">Your list is empty, Add a Task!</p>`;
 }
 //showing the entire list of todo-items by default
 showToDoList("all");
@@ -87,7 +87,7 @@ function removeItem(idToBeDeleted){
     toDoListArray.splice(idToBeDeleted, 1)
     //parsing into the local storage
     localStorage.setItem("list", JSON.stringify(toDoListArray))
-    showToDoList()
+    showToDoList("all")
 }
 
 //function to display the checks
@@ -128,7 +128,7 @@ toDoInput.addEventListener("keyup", e => {
         //setting items in the local storage
         localStorage.setItem("list", JSON.stringify(toDoListArray))
         //showing the todo lis items on the screen
-        showToDoList();
+        showToDoList("all");
     }
 })
 

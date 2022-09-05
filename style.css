@@ -176,7 +176,8 @@ input:focus{
     color:var(--listcolor);
 }
 .default-statement{
-    padding: 20px 5% 0 5%;
+    padding: 20px 5%;
+    border-bottom: 2px solid var(--border);
     color:var(--listcolor)
 }
 .lists li p.checked{
