@@ -26,9 +26,34 @@ const toDoContainer = document.querySelector('.lists')
 //getting the local storage
 let toDoListArray = JSON.parse(localStorage.getItem("list"))
 
+//building the functionalities for all, active and completed
+//first activity section
+const arrayA = document.querySelectorAll((".flex__a p"))
+//second activity section
+const arrayB = document.querySelectorAll((".flex__b p"))
 
-//function to show each todo list
-function showToDoList(){
+//functions for all, active and completed
+arrayA.forEach((list) => {
+    list.addEventListener('click', () => { 
+        document.querySelector("p.current--Array").classList.remove("current--Array")
+        list.classList.add("current--Array")
+        //shows the array containing the id of either all, active or completed lists
+        showToDoList(list.id)
+    })
+})
+arrayB.forEach((list) => {
+    list.addEventListener('click', () => { 
+        document.querySelector("p.current--Arr").classList.remove("current--Arr")
+        list.classList.add("current--Arr")
+        //shows the array containing the id of either all, active or completed lists
+        showToDoList(list.id)
+    })
+})
+
+
+
+//function to show each todo list of either all, active or completed
+function showToDoList(filteredList){
     let li = "";
     if(toDoListArray){
          //for each todo item added, we want to display on the screen
@@ -36,22 +61,25 @@ function showToDoList(){
             //to keep the checked class constant even upon refresh, using the ternary operator
             let todoIsChecked = todo.status == "completed" ? "checked" : ""
             
-            //what should be displayed
-            li += `<li draggable="true">
-                        <div for="${id}" class="box">
-                            <input type="checkbox" onclick=" return isChecked(this)" id= ${id}  ${todoIsChecked} data-checkbox class="checkbox">
-                            <p class="${todoIsChecked}" data-todo>${todo.name}</pc>
-                        </div>
-                        <div class="remove">
-                            <img src="./images/icon-cross.svg" onclick = "return removeItem(${id})" alt="">
-                        </div>
-                    </li>`
+            if(filteredList === todo.status || filteredList === "all"){
+                //what should be displayed
+                li += `<li draggable="true">
+                            <div for="${id}" class="box">
+                                <input type="checkbox" onclick=" return isChecked(this)" id= ${id}  ${todoIsChecked} data-checkbox class="checkbox">
+                                <p class="${todoIsChecked}" data-todo>${todo.name}</pc>
+                            </div>
+                            <div class="remove">
+                                <img src="./images/icon-cross.svg" onclick = "return removeItem(${id})" alt="">
+                            </div>
+                        </li>`
+                }
             })
     }
     //setting the content of the unordered list to the list items
     toDoContainer.innerHTML = li;
 }
-showToDoList();
+//showing the entire list of todo-items by default
+showToDoList("all");
 
 //function to remove each item
 function removeItem(idToBeDeleted){
@@ -74,50 +102,11 @@ function isChecked(todo){
     }
     else{
         selectedTodo.classList.remove("checked")
-        toDoListArray[todo.id].status = "pending"
+        toDoListArray[todo.id].status = "active"
         //updating the status
     }
     localStorage.setItem("list", JSON.stringify(toDoListArray))
 }
-
-/*
-//creating the functionalities for the check and unchecked items
-///getting all the checkboxes
-const checkBoxes = document.getElementsByClassName("checkbox")
-//getting all the todo items
-const todoItems = document.getElementsByClassName("todo-item")
-
-//for loop to add event listener to each checkbox
-for(let i = 0; i<checkBoxes.length; i++){
-    //parsing a function to review if any items are checked or not
-    checkBoxes[i].addEventListener("click", checked)
-}
-function checked(){
-    //for loop to iterate through each todo item and toggle checked class
-    for(let i = 0; i<todoItems.length; i++){
-        //statement for when each checkbox is checked
-        if(checkBoxes[i].checked == true){
-            //adding the classlist of check when items are checked
-            todoItems[i].classList.add("checked")
-            //looping through the local storage to change the status upon a click
-            if(todoItems[i].innerHTML = (toDoListArray[i].name)){
-                //changing the status to completed
-                toDoListArray[i].status ='completed'
-                //appending to the local storage
-                localStorage.setItem("list", JSON.stringify(toDoListArray))
-            }
-        }
-        //statement for when each checkbox is not checked
-        else{
-            //removing the classlist of checked when items are unchecked
-            todoItems[i].classList.remove("checked")
-            //changing the status back to pending
-            toDoListArray[i].status= "pending"
-            //appending to the local storage
-            localStorage.setItem("list", JSON.stringify(toDoListArray))
-        }
-    }
-}*/
 
 
 //adding an event listener to the input to read its content
@@ -133,7 +122,7 @@ toDoInput.addEventListener("keyup", e => {
         //setting the value of the input to null after enter is pressed
         toDoInput.value = "";
         //creating the object that'd contain the value obtained from the input
-        let whatToDo = {name: toDo, id: Math.random(), status: 'pending'}
+        let whatToDo = {name: toDo, id: Math.random(), status: 'active'}
         //pushing each todo item to the local storage
         toDoListArray.push(whatToDo)
         //setting items in the local storage
@@ -143,54 +132,6 @@ toDoInput.addEventListener("keyup", e => {
     }
 })
 
-
-//building the functionalities for all, active and completed
-//first activity section
-const activitySectionA = document.querySelector(".flex__a")
-const arrayA = Array.from(activitySectionA.children)
-//second activity section
-const activitySectionB = document.querySelector(".flex__b")
-const arrayB = Array.from(activitySectionB.children)
-
-
-//function to view separate colors on click
-function viewColors(currentColors, targetColors){
-    currentColors.classList.remove('current--Array')
-    targetColors.classList.add('current--Array')
-}
-
-arrayA.forEach(() => {
-    arrayA[0].addEventListener('click', () => {
-        let currentColor = document.querySelector('.current--Array')
-        let targetColor = arrayA[0];
-        viewColors(currentColor, targetColor)
-    })
-    arrayA[1].addEventListener('click', () => {
-        let currentColor = document.querySelector('.current--Array')
-        let targetColor = arrayA[1];
-        viewColors(currentColor, targetColor)
-    })
-    arrayA[2].addEventListener('click', () => {
-        let currentColor = document.querySelector('.current--Array')
-        let targetColor = arrayA[2];
-        viewColors(currentColor, targetColor)
-    })
-})
-arrayB.forEach(() => {
-    arrayB[0].addEventListener('click', () => {
-        let currentColor = document.querySelector('.current--Array')
-        let targetColor = arrayB[0];
-        viewColors(currentColor, targetColor)
-    })
-    arrayB[1].addEventListener('click', () => {
-        let currentColor = document.querySelector('.current--Array')
-        let targetColor = arrayB[1];
-        viewColors(currentColor, targetColor)
-    })
-    arrayB[2].addEventListener('click', () => {
-        let currentColor = document.querySelector('.current--Array')
-        let targetColor = arrayB[2];
-        viewColors(currentColor, targetColor)
-    })
-})
-
+//dynamic number
+//clearing completed
+//dragging and dropping to reorder

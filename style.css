@@ -175,6 +175,10 @@ input:focus{
 .lists li p{
     color:var(--listcolor);
 }
+.default-statement{
+    padding: 20px 5% 0 5%;
+    color:var(--listcolor)
+}
 .lists li p.checked{
     text-decoration: line-through;
     color: var(--strikethrough);
@@ -252,13 +256,13 @@ input:focus{
     cursor: pointer;
     color: var(--flex);
 }
+.flex__a p.current--Array, .flex__b p.current--Arr{
+    color:hsl(220, 98%, 61%);   
+}
 .flex__b p {
     cursor: pointer;
     color: var(--flex) ;
     font-size: 1.2rem;
-}
-.flex__a .current--Array, .flex__b .current--Array{
-    color: hsl(220, 98%, 61%);
 }
 .flex__a p:hover, .flex__b p:hover{
     color: var(--hover);
