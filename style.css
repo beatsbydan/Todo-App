@@ -177,6 +177,7 @@ input:focus{
 }
 .default-statement{
     padding: 20px 5%;
+    text-align: center;
     border-bottom: 2px solid var(--border);
     color:var(--listcolor)
 }
