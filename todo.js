@@ -83,6 +83,12 @@ function showToDoList(filteredList){
     }
     //setting the content of the unordered list to the list items
     toDoContainer.innerHTML = li || `<p class ="default-statement">Your list is empty, Add a Task!</p>`;
+    //dragging and dropping to reorder
+    //used the library from cdnjs.com
+    const dragArea = document.querySelector(".lists")
+    new Sortable(dragArea, {
+        animation:350
+    })
 }
 //showing the entire list of todo-items by default
 showToDoList("all");
@@ -157,9 +163,3 @@ clearBtn.addEventListener("click", () => {
     showToDoList("all")
 })
 
-//dragging and dropping to reorder
-//used the library from cdnjs.com
-const dragArea = document.querySelector(".lists")
-new Sortable(dragArea, {
-    animation:350
-})

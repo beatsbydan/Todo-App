@@ -33,6 +33,8 @@ body{
 }
 ::placeholder, input{
     font-size: 1rem;
+    word-break: break-all;
+    word-wrap: break-word;
     color: var(--flex);
     font-family: 'Josefin Sans';
 }
@@ -112,12 +114,8 @@ header{
     flex-direction: row;
     align-items: center;
     position: relative;
-    word-break: break-all;
-    word-wrap: break-word;
 }
 ::placeholder{
-    position: relative;
-    left: 48px;
     word-break: break-all;
     word-wrap: break-word;
 }
@@ -127,33 +125,30 @@ label{
     align-items: center;
     justify-content: space-between;
     gap: 20px;
+    padding: 0 5%;
+    height: 50px;
+    border-radius: 7px;
+    background-color: var(--container-color);
+    box-shadow: 0px 8px 14px rgba(0, 0, 0, 0.158);
     position: relative;
     width: inherit;
 }
 .check--box{
-    -webkit-appearance: none;
     background-color: transparent;
     border: 2px solid var(--circles);
     display: inline-block;
     width: 12px;
-    left: 5%;
     padding: 12px;
     height: 12px;
     border-radius: 50%;
     cursor:pointer;
-    position: absolute;
-    z-index: 1;
-    border-image-slice:1;
 }
 input{
     width: inherit;
     border: none;
-    height: 50px;
     border-radius: 7px;
-    position: relative;
-    padding:0 5%;
     color: var(--listcolor);
-    background-color: var(--container-color);
+    background-color: transparent;
 }
 input:focus{
     outline: none;
@@ -163,15 +158,16 @@ input:focus{
     background-color: white;
     margin-top: 20px;
     border-radius: 7px;
+    box-shadow: 0px 8px 14px rgba(0, 0, 0, 0.158);
 }
 .lists{
-    border-radius: 7px;
     list-style: none;
 }
 .lists li{
     width: 100%;
     background-color: var(--container-color);
     display: flex;
+    border-radius: 9px 9px 0 0;
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
@@ -243,6 +239,7 @@ input:focus{
     flex-direction: row;
     justify-content: space-between;
     padding: 16px 5%;
+    border-radius: 9px;
     background-color: var(--container-color);
 }
 .activity__section p{
@@ -260,7 +257,8 @@ input:focus{
     justify-content: space-around;
     margin-top: 20px;
     padding: 16px 5%;
-    border-radius: 7px;
+    border-radius: 9px;
+    box-shadow: 0px 8px 14px rgba(0, 0, 0, 0.158);
 }
 .flex__a p{
     cursor: pointer;
