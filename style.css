@@ -179,7 +179,8 @@ input:focus{
     padding: 20px 5%;
     text-align: center;
     border-bottom: 2px solid var(--border);
-    color:var(--listcolor)
+    color:var(--listcolor);
+    background-color: var(--container-color);
 }
 .lists li p.checked{
     text-decoration: line-through;

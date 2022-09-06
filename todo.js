@@ -73,7 +73,13 @@ function showToDoList(filteredList){
                             </div>
                         </li>`
                 }
-            })
+        })
+        //dynamic number
+        let dynamicNumber =document.querySelector("#dynamic")
+        //setting the dynamic number to be equal to the filtered array
+        dynamicNumber.innerHTML=toDoListArray.filter((complete)=>{
+            return complete.status === "active"
+        }).length
     }
     //setting the content of the unordered list to the list items
     toDoContainer.innerHTML = li || `<p class ="default-statement">Your list is empty, Add a Task!</p>`;
@@ -103,8 +109,15 @@ function isChecked(todo){
     else{
         selectedTodo.classList.remove("checked")
         toDoListArray[todo.id].status = "active"
-        //updating the status
     }
+    //condition to always return the number active items available
+    if(todo.checked || !todo.checked){
+        let dynamicNumber =document.querySelector("#dynamic")
+        dynamicNumber.innerHTML=toDoListArray.filter((complete)=>{
+            return complete.status === "active"
+        }).length
+    }
+    //updating the status
     localStorage.setItem("list", JSON.stringify(toDoListArray))
 }
 
@@ -131,7 +144,17 @@ toDoInput.addEventListener("keyup", e => {
         showToDoList("all");
     }
 })
-
-//dynamic number
 //clearing completed
+const clearBtn = document.querySelector(".clear__completed p")
+clearBtn.addEventListener("click", () => {
+    //removing the selected item;
+    let done = toDoListArray.filter(done => {
+        return done.status === "completed"
+    })
+    //parsing into the local storage
+    localStorage.removeItem(done)
+    showToDoList(done)
+    localStorage.setItem("list", JSON.stringify(toDoListArray))
+    showToDoList("all")
+})
 //dragging and dropping to reorder
