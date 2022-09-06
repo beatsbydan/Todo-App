@@ -149,6 +149,7 @@ input{
     border-radius: 7px;
     color: var(--listcolor);
     background-color: transparent;
+    transition: all 250ms ease-in;
 }
 input:focus{
     outline: none;
@@ -162,6 +163,9 @@ input:focus{
 }
 .lists{
     list-style: none;
+}
+.draggable.dragging{
+    opacity: 0.6;
 }
 .lists li{
     width: 100%;
@@ -209,26 +213,21 @@ input:focus{
     height: 12px;
     border-radius: 50%;
     cursor:pointer;
-    border-image-slice:1;
 }
-/*.checkbox:hover{
-    border: double 2px transparent;
-    background-origin: border-box;
-    -webkit-background-clip: content-box, border-box;
-    background-image: linear-gradient(var(--container-color),var(--container-color)), linear-gradient(to right, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
-}*/
+.checkbox:hover{
+    border-width: 2px;
+    border-style: solid;
+    border-color: transparent;
+    border-radius: 50%;
+    background: linear-gradient(var(--container-color),var(--container-color)) padding-box,
+    linear-gradient(to right, hsl(192, 100%, 67%), hsl(280, 87%, 65%)) border-box;
+}
 .checkbox:checked{
     background-repeat: no-repeat;
     background-position: center;
     background-size: auto;
     background-image:url(./images/icon-check.svg),linear-gradient(to right, hsl(192, 100%, 67%), hsl(280, 87%, 65%)) ;
 }
-/*.check--box:hover{
-    border: double 1px transparent;
-    background-origin: border-box;
-    -webkit-background-clip: content-box, border-box;
-    background-image: linear-gradient(var(--container-color),var(--container-color)), linear-gradient(to right, hsl(192, 100%, 67%), hsl(280, 87%, 65%));
-}*/
 .clear__completed p{
     cursor: pointer;
 }
@@ -257,7 +256,7 @@ input:focus{
     display: flex;
     justify-content: space-around;
     margin-top: 20px;
-    padding: 16px 5%;
+    padding: 16px 9%;
     border-radius: 9px;
     box-shadow: 0px 8px 14px rgba(0, 0, 0, 0.158);
 }

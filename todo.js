@@ -63,7 +63,7 @@ function showToDoList(filteredList){
             
             if(filteredList === todo.status || filteredList === "all"){
                 //what should be displayed
-                li += `<li draggable="true">
+                li += `<li class="list-group-item" draggable="true">
                             <div for="${id}" class="box">
                                 <input type="checkbox" onclick=" return isChecked(this)" id= ${id}  ${todoIsChecked} data-checkbox class="checkbox">
                                 <p class="${todoIsChecked}" data-todo>${todo.name}</pc>
@@ -83,12 +83,6 @@ function showToDoList(filteredList){
     }
     //setting the content of the unordered list to the list items
     toDoContainer.innerHTML = li || `<p class ="default-statement">Your list is empty, Add a Task!</p>`;
-    //dragging and dropping to reorder
-    //used the library from cdnjs.com
-    const dragArea = document.querySelector(".lists")
-    new Sortable(dragArea, {
-        animation:350
-    })
 }
 //showing the entire list of todo-items by default
 showToDoList("all");
@@ -163,3 +157,135 @@ clearBtn.addEventListener("click", () => {
     showToDoList("all")
 })
 
+//adding the draggable function
+//getting the list items
+const draggables =  document.querySelectorAll(".list-group-item")
+//getting the drag area
+const dragArea = document.getElementById("lists")
+    function swapArrayElements(arr, indexA, indexB) {
+        var temp = arr[indexA];
+        arr[indexA] = arr[indexB];
+        arr[indexB] = temp;
+    };
+    
+    function orderList(oldIndex, newIndex) {
+        swapArrayElements(toDoListArray, oldIndex, newIndex)
+    
+        localStorage.setItem("list", JSON.stringify(toDoListArray));
+    }
+    
+    
+    // For sorting the list
+    Sortable.create(dragArea, {
+        animation: 100,
+        group: 'list-1',
+        draggable: '.list-group-item',
+        handle: '.list-group-item',
+        sort: true,
+        filter: '.sortable-disabled',
+        chosenClass: 'active',
+        onSort: function (/*Event*/evt) {
+        orderList(evt.oldIndex, evt.newIndex);
+    },
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/*new Sortable(dragArea, {
+    animation: 150,
+    ghostClass: 'sortable-ghost'
+});*/    
+/*
+//event listeners for each draggable
+draggables.forEach((draggable)=>{
+    //when the drag starts
+    draggable.addEventListener("dragstart", () => {
+        //adding the class of dragging tto be able to catch it when sliding over each box of todo list
+        draggable.classList.add("dragging")
+    })
+    //when drag ends
+    draggable.addEventListener("dragend", () => {
+        //removing the class of dragging
+        draggable.classList.remove("dragging")
+    })
+})
+//event listener to monitor the position of the items when moving / dropped within the container
+dragArea.addEventListener("dragover", e => {
+    //removes the do not allow cursor
+    e.preventDefault()
+    const afterElement = getDrag(dragArea, e.clientY)
+    const draggable = document.querySelector(".dragging")
+    if(afterElement == null){
+        dragArea.appendChild(draggable)
+    }else{
+        dragArea.insertBefore(draggable, afterElement)
+    }
+})
+
+function getDrag(box, yPosition){
+    const dragElements = [...box.querySelectorAll(".draggable")]
+    return dragElements.reduce((closest, child) => {
+        const boxes = child.getBoundingClientRect()
+        const offset = yPosition - boxes.top - (boxes.height / 2)
+        if(offset < 0 && offset > closest.offset){
+            return {offset: offset, element: child}
+        }
+        else {
+            return closest
+        }
+    }, {offset: Number.NEGATIVE_INFINITY}).element
+}*/
