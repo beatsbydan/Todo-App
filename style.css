@@ -112,6 +112,14 @@ header{
     flex-direction: row;
     align-items: center;
     position: relative;
+    word-break: break-all;
+    word-wrap: break-word;
+}
+::placeholder{
+    position: relative;
+    left: 48px;
+    word-break: break-all;
+    word-wrap: break-word;
 }
 label{
     display: flex;
@@ -147,7 +155,6 @@ input{
     color: var(--listcolor);
     background-color: var(--container-color);
 }
-
 input:focus{
     outline: none;
 }
