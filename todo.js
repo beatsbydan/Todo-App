@@ -117,7 +117,7 @@ function isChecked(todo){
             return complete.status === "active"
         }).length
     }
-    //updating the status
+    //updating the local storage
     localStorage.setItem("list", JSON.stringify(toDoListArray))
 }
 
@@ -144,17 +144,17 @@ toDoInput.addEventListener("keyup", e => {
         showToDoList("all");
     }
 })
+
 //clearing completed
 const clearBtn = document.querySelector(".clear__completed p")
 clearBtn.addEventListener("click", () => {
     //removing the selected item;
-    let done = toDoListArray.filter(done => {
-        return done.status === "completed"
+    toDoListArray = toDoListArray.filter(done => {
+        return done.status === "active"
     })
     //parsing into the local storage
-    localStorage.removeItem(done)
-    showToDoList(done)
     localStorage.setItem("list", JSON.stringify(toDoListArray))
     showToDoList("all")
 })
+
 //dragging and dropping to reorder
