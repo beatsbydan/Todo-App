@@ -179,6 +179,7 @@ input:focus{
     color:var(--listcolor);
 }
 .default-statement{
+    border-radius: 9px 9px 0 0;
     padding: 20px 5%;
     text-align: center;
     border-bottom: 2px solid var(--border);
