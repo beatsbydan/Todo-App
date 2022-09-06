@@ -155,7 +155,7 @@ input:focus{
 }
 .todo__list{
     width: 100%;
-    background-color: white;
+    background-color:var(--container-color);
     margin-top: 20px;
     border-radius: 7px;
     box-shadow: 0px 8px 14px rgba(0, 0, 0, 0.158);
