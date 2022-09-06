@@ -158,3 +158,8 @@ clearBtn.addEventListener("click", () => {
 })
 
 //dragging and dropping to reorder
+//used the library from cdnjs.com
+const dragArea = document.querySelector(".lists")
+new Sortable(dragArea, {
+    animation:350
+})
