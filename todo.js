@@ -152,6 +152,7 @@ clearBtn.addEventListener("click", () => {
     toDoListArray = toDoListArray.filter(done => {
         return done.status === "active"
     })
+    toDoContainer.innerHTML = `<p class="default-statement>All cleared. Go complete some tasks!</p>`
     //parsing into the local storage
     localStorage.setItem("list", JSON.stringify(toDoListArray))
     showToDoList("all")
