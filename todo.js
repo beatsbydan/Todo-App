@@ -193,8 +193,9 @@ toDoInput.addEventListener("keyup", e => {
     //statement to add to the local storage when the key "enter" is hit
     if(e.key == "Enter" && toDo){
         document.querySelector("p.current--Array").classList.remove("current--Array")
+        document.querySelector("p.current--Arr").classList.remove("current--Arr")
         arrayA[0].classList.add("current--Array")
-        arrayB[0].classList.add("current--Array")
+        arrayB[0].classList.add("current--Arr")
         //statement to parse an empty array in if there is no local storage available
         if(!toDoListArray){
             toDoListArray = [];
