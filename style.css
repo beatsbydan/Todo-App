@@ -213,14 +213,6 @@ input:focus{
     border-radius: 50%;
     cursor:pointer;
 }
-.checkbox:hover{
-    border-width: 2px;
-    border-style: solid;
-    border-color: transparent;
-    border-radius: 50%;
-    background: linear-gradient(var(--container-color),var(--container-color)) padding-box,
-    linear-gradient(to right, hsl(192, 100%, 67%), hsl(280, 87%, 65%)) border-box;
-}
 .checkbox:checked{
     background-repeat: no-repeat;
     background-position: center;
@@ -229,9 +221,6 @@ input:focus{
 }
 .clear__completed p{
     cursor: pointer;
-}
-.clear__completed p:hover{
-    color: var(--hover);
 }
 .activity__section{
     display: flex;
@@ -271,9 +260,6 @@ input:focus{
     color: var(--flex) ;
     font-size: 1.2rem;
 }
-.flex__a p:hover, .flex__b p:hover{
-    color: var(--hover);
-}
 .reorder__todo--list{
     margin-top: 50px;
     text-align: center;
@@ -301,4 +287,20 @@ input:focus{
     .flex__b{
         display: none;
     }
+}
+@media (hover: hover){
+    .flex__a p:hover, .flex__b p:hover{
+        color: var(--hover);
+    }
+    .clear__completed p:hover{
+        color: var(--hover);
+    }
+    .checkbox:hover{
+        border-width: 2px;
+        border-style: solid;
+        border-color: transparent;
+        border-radius: 50%;
+        background: linear-gradient(var(--container-color),var(--container-color)) padding-box,
+        linear-gradient(to right, hsl(192, 100%, 67%), hsl(280, 87%, 65%)) border-box;
+    }  
 }
