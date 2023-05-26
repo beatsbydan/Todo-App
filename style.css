@@ -207,6 +207,7 @@ input:focus{
 }
 .checkbox{
     -webkit-appearance: none;
+    appearance: none;
     background-color: transparent;
     border: 2px solid var(--circles);
     display: inline-block;
