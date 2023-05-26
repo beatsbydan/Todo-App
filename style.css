@@ -201,6 +201,9 @@ input:focus{
 }
 .remove img{
     cursor: pointer;
+    width: -moz-fit-content;
+    width: fit-content;
+
 }
 .checkbox{
     -webkit-appearance: none;

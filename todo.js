@@ -187,13 +187,14 @@ function isChecked(todo){
 
 //adding an event listener to the input to read its content
 toDoInput.addEventListener("keyup", e => {
-    
     //obtaining the value of the todo that is about to be created
     let toDo = toDoInput.value.trim();
     
     //statement to add to the local storage when the key "enter" is hit
     if(e.key == "Enter" && toDo){
-        
+        document.querySelector("p.current--Array").classList.remove("current--Array")
+        arrayA[0].classList.add("current--Array")
+        arrayB[0].classList.add("current--Array")
         //statement to parse an empty array in if there is no local storage available
         if(!toDoListArray){
             toDoListArray = [];
